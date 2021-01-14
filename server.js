@@ -20,49 +20,61 @@ app.listen(PORT, function () {
 });
 
 // Array of tables and wait list
-const tables = [];
-const waitList = [];
-
-// ARRAYS OF OBJECTS. OBJECTS SHOULD HAVE
 // NAME
 // PHONE
 // EMAIL
 // ID
+const tables = [
+  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
+  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
+  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
+];
+const waitList = [
+  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
+  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
+  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
+];
 
 // HTML ROUTES
 // ROUTE FOR HOME
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-  });
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // ROUTE FOR RESERVE
-app.get("/reserve", function(req, res) {
-    res.sendFile(path.join(VIEWS_DIR, "reserve.html"));
-  });
+app.get("/reserve", function (req, res) {
+  res.sendFile(path.join(VIEWS_DIR, "reserve.html"));
+});
 
 // ROUTE FOR TABLES
-app.get("/tables", function(req, res) {
-    console.log(VIEWS_DIR);
-    console.log(path.join(VIEWS_DIR, "tables.html"));
-    res.sendFile(path.join(VIEWS_DIR, "tables.html"));
-  });
+app.get("/tables", function (req, res) {
+  res.sendFile(path.join(VIEWS_DIR, "tables.html"));
+});
 
 // API ROUTES
 app.post("/api/reserve", function (req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newReservation = req.body;
+  var waiting = [{onWaitlist: true}];
 
   // We then add the json the user sent to the character array
   if (tables.length <= 5) {
     tables.push(newReservation);
+    waiting.onWaitlist = false;
   } else {
     waitList.push(newReservation);
+    waiting.onWaitlist = true;
   }
 
   // We then display the JSON to the users
-  res.json(waitList);
+  res.json(waiting);
 });
+
+app.get("/api/reserve", (req, res) {
+    if()
+    res.json(waitList);
+  })
 
 app.get("/api/tables", function (req, res) {
   res.json(tables);
