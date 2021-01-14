@@ -32,16 +32,33 @@ Note: We know this is a hard activity. We know you aren't yet comfortable with N
 ** Create index.html
 *** Import Bootstrap/ font awesome
 *** Create Jumbotron/ buttons
+**** Button 1: view tables
+**** Button 2: make reservation
 *** Create bottom links
 
 ** Create reserve.html
 *** Import Bootstrap/ font awesome
 *** Create Jumbotron/ buttons
+**** Button 1: display tables
+**** button 2: home
+*** Create a form for inputting reservation
+**** Field 1: name
+**** Field 2: email
+**** Field 3: phone
+**** Field 4: ID
+*** Create submit behavior
+**** Make ajax post request to the express route to create the reservation
+**** Inform the user
 *** Create bottom links
 
 ** Create tables.html
 *** Import Bootstrap/ font awesome
 *** Create Jumbotron/ buttons
+**** Button 1: make reservation
+**** button 2: home
+*** Make an API call to get tables and waitlist
+*** Display tables in a section
+*** Display waitlist in a section
 *** Create bottom links
 
 * Create a basic server using Express.JS
@@ -54,12 +71,12 @@ Note: We know this is a hard activity. We know you aren't yet comfortable with N
 *** Add routes
 
 * Create a few array variables that will hold the data
-** Array of objects for tables
+** Array of objects for tables (name, phone number, email, and ID properties)
 ** Array of objects for wait list
 
 * Create a set of routes for getting and posting table data
-** API route for table JSON
-** API route for reservations JSON
+** API route for getting table data JSON
+** API route for creating reservations JSON
 
 
 * Create a set of routes for displaying the HTML pages
@@ -69,6 +86,7 @@ Note: We know this is a hard activity. We know you aren't yet comfortable with N
 ** Route for tables#
 
 * Use jQuery to run AJAX calls to GET and POST data from users to the Express server
+
 
 ---------------------
 
