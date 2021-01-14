@@ -1,7 +1,7 @@
 // REQUIRE EXPRESS
 const { table } = require("console");
 const express = require("express");
-const path = require("path");
+const path = requrie("path");
 
 // CREATE AN INSTANCE OF EXPRESS
 const app = express();

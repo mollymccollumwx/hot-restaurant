@@ -29,30 +29,55 @@
     <!-- Local Style Sheet -->
     <link rel="stylesheet" href="../css/style.css" />
     <style>
-        .jumbotron {
-            text-align: center;
-        }
-        h1 {
-            font-weight: bold;
-        }
+      .jumbotron {
+        text-align: center;
+      }
+      h1 {
+        font-weight: bold;
+      }
+      .table-container {
+        color: #333;
+        background-color: #f5f5f5;
+        border-color: #ddd;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="jumbotron">
         <h1 class="display-4">Hot Restaurant</h1>
-        <p class="lead">
-          Current Reservations and Waiting List 
-        </p>
+        <p class="lead">Current Reservations and Waiting List</p>
         <hr class="my-4" />
-        <a class="btn btn-primary btn-lg" href="#" role="button">Make Reservation</a>
-        <a class="btn btn-primary btn-lg" href="../index.html"><i class="fas fa-home"></i></a>
+        <a class="btn btn-primary btn-lg" href="#" role="button"
+          >Make Reservation</a
+        >
+        <a class="btn btn-primary btn-lg" href="../index.html"
+          ><i class="fas fa-home"></i
+        ></a>
       </div>
-      <div class="container">
-          <h2>Current Reservations</h2>
+      <div class="container table-container">
+        <div class="row">
+          <div class="col-sm-12">
+            <p>Current Reservations</p>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+            </div>
+          </div>
       </div>
-      <div class="container">
-          <h2>Waiting List</h2>
+      <div class="container table-container">
+        <div class="row">
+            <div class="col-sm-12">
+              <p>Waiting List</p>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+        </div>
       </div>
     </div>
     <script src="" async defer></script>
