@@ -32,54 +32,87 @@
       .jumbotron {
         text-align: center;
       }
-      h1 {
+      .display-4 {
         font-weight: bold;
       }
-      .table-container {
-        color: #333;
-        background-color: #f5f5f5;
-        border-color: #ddd;
+      .lead{
+        font-size: 30px;
+      }
+      .card {
         margin-bottom: 20px;
-        border: 1px solid transparent;
+      }
+      .card-body{
+        background-color: #f5f5f5;
+        margin: 20px;
         border-radius: 4px;
+      }
+      .reservation-number, .reservation-number:hover {
+        background-color: #337AB7;
+        padding: 4px 14px;
+      }
+      #reservation-btn {
+        background-color: #D9534F;
+        color: white;
+      }
+      #home-btn {
+        border-color: lightgray;
+        background-color: white;
+        color: black;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h1 class="display-4">Hot Restaurant</h1>
-        <p class="lead">Current Reservations and Waiting List</p>
+        <h1 class="display-4"><i class="fas fa-fire"></i> Hot Restaurant</h1>
         <hr class="my-4" />
-        <a class="btn btn-primary btn-lg" href="#" role="button"
+        <h2 class="lead">Current Reservations and Waiting List</h2>
+        <a id="reservation-btn" class="btn btn-lg" href="#" role="button"
           >Make Reservation</a
         >
-        <a class="btn btn-primary btn-lg" href="../index.html"
+        <a id="home-btn" class="btn btn-lg" href="../index.html"
           ><i class="fas fa-home"></i
         ></a>
       </div>
-      <div class="container table-container">
-        <div class="row">
-          <div class="col-sm-12">
-            <p>Current Reservations</p>
-          </div>
+      <div class="card">
+        <div class="card-header">
+          Current Reservations
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-            </div>
-          </div>
-      </div>
-      <div class="container table-container">
-        <div class="row">
-            <div class="col-sm-12">
-              <p>Waiting List</p>
-            </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
+        <div class="card-body">
+          <h4><button class="btn btn-primary reservation-number">1</button> | 12</h4>
         </div>
       </div>
-    </div>
-    <script src="" async defer></script>
+      <div class="card">
+        <div class="card-header">
+          Wait List
+        </div>
+        <div class="card-body">
+          
+        </div>
+      </div>
+    <script src="" async defer>
+      $("#reservation-btn").on("click", function() {
+      var searchedCharacter = $("#character-search").val().trim();
+
+      // Using a RegEx Pattern to remove spaces from searchedCharacter
+      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+      $.get("/api/characters/" + searchedCharacter, function(data) {
+        console.log(data);
+        if (data) {
+          $("#stats").show();
+          $("#name").text(data.name);
+          $("#role").text(data.role);
+          $("#age").text(data.age);
+          $("#force-points").text(data.forcePoints);
+        } else {
+          $("#name").text(
+            "The force is not strong with this one. Your character was not found.");
+          $("#stats").hide();
+        }
+      });
+    });
+    </script>
   </body>
 </html>
