@@ -1,16 +1,33 @@
 // REQUIRE EXPRESS
+const express = require("express");
+const path = require("path");
+
 // CREATE AN INSTANCE OF EXPRESS
+const app = express();
+
 // CREATE A PORT FOR THE APP TO RUN
-// BUT ALSO LISTEN TO ENVIRONMENT VARIABLES SO WE CAN DEPLOY TO HEROKU
+const PORT = process.env.PORT || 3000;
+
 // ADD MIDDLEWARE
-// COPY/PASTE FROM STAR WARS APP
-// CREATE AN ARRAY OF TABLES
-// CREATE AN ARRAY FOR WAITLIST
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// BUT ALSO LISTEN TO ENVIRONMENT VARIABLES SO WE CAN DEPLOY TO HEROKU
+app.listen(PORT, function () {
+  console.log("App listening on PORT " + PORT);
+});
+
+// Array of tables and wait list
+const tables = [];
+const waitList = [];
+
 // ARRAYS OF OBJECTS. OBJECTS SHOULD HAVE
 // NAME
 // PHONE
 // EMAIL
 // ID
+
+
 // HTML ROUTES
 // ROUTE FOR HOME
 // ROUTE FOR TABLES
