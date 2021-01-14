@@ -1,6 +1,6 @@
 // REQUIRE EXPRESS
 const express = require("express");
-const path = require("path");
+const path = requrie("path");
 
 // CREATE AN INSTANCE OF EXPRESS
 const app = express();
@@ -26,8 +26,6 @@ const waitList = [];
 // PHONE
 // EMAIL
 // ID
-
-
 // HTML ROUTES
 // ROUTE FOR HOME
 // ROUTE FOR TABLES
