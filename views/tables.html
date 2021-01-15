@@ -6,6 +6,7 @@
     <title>Tables</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- Bootstrap Link -->
     <link
       rel="stylesheet"
@@ -67,10 +68,10 @@
         <h1 class="display-4"><i class="fas fa-fire"></i> Hot Restaurant</h1>
         <hr class="my-4" />
         <h2 class="lead">Current Reservations and Waiting List</h2>
-        <a id="reservation-btn" class="btn btn-lg" href="#" role="button"
+        <a id="reservation-btn" class="btn btn-lg" href="./reserve" role="button"
           >Make Reservation</a
         >
-        <a id="home-btn" class="btn btn-lg" href="../index.html"
+        <a id="home-btn" class="btn btn-lg" href="../"
           ><i class="fas fa-home"></i
         ></a>
       </div>
@@ -78,40 +79,56 @@
         <div class="card-header">
           Current Reservations
         </div>
-        <div class="card-body">
-          <h4><button class="btn btn-primary reservation-number">1</button> | 12</h4>
+        <div class="card-body" id="reservations">
+          
         </div>
       </div>
       <div class="card">
         <div class="card-header">
           Wait List
         </div>
-        <div class="card-body">
+        <div class="card-body" id="waitlist">
           
         </div>
       </div>
-    <script src="" async defer>
-      $("#reservation-btn").on("click", function() {
-      var searchedCharacter = $("#character-search").val().trim();
-
-      // Using a RegEx Pattern to remove spaces from searchedCharacter
-      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
-
-      $.get("/api/characters/" + searchedCharacter, function(data) {
-        console.log(data);
-        if (data) {
-          $("#stats").show();
-          $("#name").text(data.name);
-          $("#role").text(data.role);
-          $("#age").text(data.age);
-          $("#force-points").text(data.forcePoints);
-        } else {
-          $("#name").text(
-            "The force is not strong with this one. Your character was not found.");
-          $("#stats").hide();
-        }
+    <script type="text/javascript" async defer>
+    
+      $.get("/api/tables", function(data) {
+        for(let i = 0; i < data.length; i++) {
+        const newDiv = $("<ul>").addClass("list reservations-list");  
+        const nameEl = $("<li>").addClass("list-group-item");
+        nameEl.text(data[i].name);
+        const phoneEl = $("<li>").addClass("list-group-item");;
+        phoneEl.text(data[i].phone);
+        const emailEl = $("<li>").addClass("list-group-item");;
+        emailEl.text(data[i].email);
+        const idEl = $("<li>").addClass("list-group-item");;
+        idEl.text(data[i].id);
+        newDiv.append(nameEl);
+        newDiv.append(phoneEl);
+        newDiv.append(emailEl);
+        newDiv.append(idEl);
+        $("#reservations").append(newDiv);
+      }
       });
+
+      $.get("/api/reserve", function(data) {
+        for(let i = 0; i < data.length; i++) {
+        const newDiv = $("<ul>").addClass("list waitlist-list");  
+        const nameEl = $("<li>").addClass("list-group-item");
+        nameEl.text(data[i].name);
+        const phoneEl = $("<li>").addClass("list-group-item");;
+        phoneEl.text(data[i].phone);
+        const emailEl = $("<li>").addClass("list-group-item");;
+        emailEl.text(data[i].email);
+        const idEl = $("<li>").addClass("list-group-item");;
+        idEl.text(data[i].id);
+        newDiv.append(nameEl);
+        newDiv.append(phoneEl);
+        newDiv.append(emailEl);
+        newDiv.append(idEl);
+        $("#waitlist").append(newDiv);
+      }
     });
     </script>
   </body>

@@ -59,7 +59,7 @@ app.post("/api/reserve", function (req, res) {
   const waiting = { onWaitList: true };
 
   // We then add the json the user sent to the character array
-  if (tables.length <= 5) {
+  if (tables.length < 5) {
     tables.push(newReservation);
     waiting.onWaitList = false; 
   } else {
@@ -69,7 +69,6 @@ app.post("/api/reserve", function (req, res) {
 
   // Return true (if the reservation is accepted) or false (if they are put on the wait list)
   res.json(waiting);
-   
 });
 
 
