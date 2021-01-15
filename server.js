@@ -1,7 +1,7 @@
 // REQUIRE EXPRESS
 const { table } = require("console");
 const express = require("express");
-const path = requrie("path");
+const path = require("path");
 
 // CREATE AN INSTANCE OF EXPRESS
 const app = express();
@@ -26,13 +26,13 @@ app.listen(PORT, function () {
 // ID
 const tables = [
   { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
-  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
-  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
+  { name: "penny", phone: "555-5556", email: "penny@gmail.com", id: "23456" },
+  { name: "pete", phone: "555-5557", email: "pete@gmail.com", id: "34567" },
 ];
 const waitList = [
-  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
-  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
-  { name: "wilbur", phone: "555-5555", email: "wilbur@gmail.com", id: "12345" },
+  { name: "woodstock", phone: "555-5558", email: "woodstock@gmail.com", id: "45678" },
+  { name: "snoopy", phone: "555-5559", email: "snoopy@gmail.com", id: "56789" },
+  { name: "charlie brown", phone: "555-5550", email: "charlie@gmail.com", id: "67890" },
 ];
 
 // HTML ROUTES
@@ -55,26 +55,27 @@ app.get("/tables", function (req, res) {
 app.post("/api/reserve", function (req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  var newReservation = req.body;
-  var waiting = [{onWaitlist: true}];
+  const newReservation = req.body;
+  const waiting = { onWaitList: true };
 
   // We then add the json the user sent to the character array
   if (tables.length <= 5) {
     tables.push(newReservation);
-    waiting.onWaitlist = false;
+    waiting.onWaitList = false; 
   } else {
     waitList.push(newReservation);
-    waiting.onWaitlist = true;
+    waiting.onWaitList = true;
   }
 
-  // We then display the JSON to the users
+  // Return true (if the reservation is accepted) or false (if they are put on the wait list)
   res.json(waiting);
+   
 });
 
-app.get("/api/reserve", (req, res) {
-    if()
-    res.json(waitList);
-  })
+
+app.get("/api/reserve", function (req, res) {
+  res.json(waitList);
+});
 
 app.get("/api/tables", function (req, res) {
   res.json(tables);
